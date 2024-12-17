@@ -1,0 +1,22 @@
+<script>
+    import { TasksCollection } from '../api/TasksCollection';
+  
+    export let task;
+  
+    const toggleChecked = () => {
+      // Set the isChecked property to the opposite of its current value
+      TasksCollection.updateAsync(task._id, {
+        $set: { isChecked: !task.isChecked }
+      });
+    };
+  </script>
+
+<li>
+    <input
+            type="checkbox"
+            readonly
+            checked={!!task.isChecked}
+            on:click={toggleChecked}
+    />
+    <span>{ task.text }</span>
+</li>
